@@ -39,17 +39,18 @@ for i in range(n):
     mY = mv[1]
     
     # 범위확인
-    if not size(kingX, kingY, mX, mY):
-        continue
-    # 돌이 있는 위치로 이동하면서 돌의 범위가 벗어나지 않는지
-    if stoneX == kingX + mX and stoneY == kingY + mY:
-        if not size(stoneX, stoneY, mX, mY):
-            continue
-        stoneX = stoneX + mX
-        stoneY = stoneY + mY
-        
-    kingX = kingX + mX
-    kingY = kingY + mY
+    if size(kingX, kingY, mX, mY):
+        # 돌이 있는 위치로 이동한다면
+        if stoneX == kingX + mX and stoneY == kingY + mY:
+            # 돌의 범위가 벗어나지 않는지 확인
+            if size(stoneX, stoneY, mX, mY):
+                stoneX = stoneX + mX
+                stoneY = stoneY + mY
+            else:
+                continue
+                
+        kingX = kingX + mX
+        kingY = kingY + mY
     
 # 출력
 print(change(kingX),kingY,sep='')
